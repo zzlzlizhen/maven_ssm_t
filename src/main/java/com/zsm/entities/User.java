@@ -19,17 +19,6 @@ public class User {
 	public String getEmail() {
 		return email;
 	}
-	public User(int id, String email, String password, String phone,
-			String sex, String sfz, String truename, String username) {
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.phone = phone;
-		this.sex = sex;
-		this.sfz = sfz;
-		this.truename = truename;
-		this.username = username;
-	}
 	public void setEmail(String email) {
 		this.email = email;
 	}

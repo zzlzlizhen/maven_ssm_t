@@ -11,50 +11,5 @@
 			            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd  
 			            http://www.springframework.org/schema/util 
 			            http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-	<!-- 需要扫描的包 -->
-	<context:component-scan base-package="com.zsm.service"></context:component-scan>
-	<context:component-scan base-package="com.zsm.dao"></context:component-scan>
-	
-	<!-- 第一步配置数据链接资源文件和数据库链接池 -->
-	<!-- 加载数据库链接资源配置文件 -->
-	<context:property-placeholder location="classpath:jdbc.properties"/>
-	
-	<!-- 配置数据库链接池 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driver}"></property>
-		<property name="url" value="${jdbc.url}"></property>
-		<property name="username" value="${jdbc.username}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-        <!-- 可同时连接的最大的连接数 -->
 
-        <property name="maxActive" value="60" />
-
-        <!-- 最大的空闲的连接数 -->
-
-        <property name="maxIdle" value="60" />
-
-        <!-- 最小的空闲的连接数，低于这个数量会被创建新的连接，默认为0 --> 
-
-        <property name="minIdle" value="5" />          
-
-        <!-- 连接池启动时创建的初始化连接数量，默认值为0 -->       
-
-        <property name="initialSize" value="1" /> 
-
-        <!-- 等待连接超时时间，毫秒，默认为无限 -->  
-
-        <property name="maxWait" value="30000" />		
-		
-	</bean>
-	<!-- 第二步：创建SqlSessionFactory 生产sqlSession-->
-	<bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="classpath:mybatis.xml"></property>
-		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
-	</bean>
-	<!-- 第三步配置mapper扫描器映射文件，由于映射文件mybatis.xml可以为空， 此处需要配置dao接口的具体映射文件路径-->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.zsm.dao"></property>
-		<property name="SqlSessionFactoryBeanName" value="SqlSessionFactory"></property>
-	</bean>
 </beans>

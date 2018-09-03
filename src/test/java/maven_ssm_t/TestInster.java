@@ -1,4 +1,5 @@
 package maven_ssm_t;
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ public class TestInster {
 	public void insertUser()throws Exception{
 	    Integer id = 1;
 	    User user = userDao.selectByPrimaryKey(1);
-		System.out.print(user);
+		System.out.print(JSON.toJSONString(user));
 	}
-
 }
